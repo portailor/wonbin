@@ -63,16 +63,12 @@
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
             background: linear-gradient(180deg, var(--bg-navy) 0%, var(--bg-purple) 50%, var(--bg-charcoal) 100%);
             background-attachment: fixed;
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.7;
-        }
-
-        body.lang-en {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         }
 
         /* Glass Morphism Utilities */
@@ -885,22 +881,22 @@
         <a href="#about">
             <span class="mobile-nav-icon">👤</span>
             <span class="lang-ko">소개</span>
-            <span class="lang-en hidden">About</span>
+            <span class="lang-en">About</span>
         </a>
         <a href="#career">
             <span class="mobile-nav-icon">💼</span>
             <span class="lang-ko">경력</span>
-            <span class="lang-en hidden">Career</span>
+            <span class="lang-en">Career</span>
         </a>
         <a href="#skills">
             <span class="mobile-nav-icon">⚡</span>
             <span class="lang-ko">스킬</span>
-            <span class="lang-en hidden">Skills</span>
+            <span class="lang-en">Skills</span>
         </a>
         <a href="#contact">
             <span class="mobile-nav-icon">✉️</span>
             <span class="lang-ko">연락</span>
-            <span class="lang-en hidden">Contact</span>
+            <span class="lang-en">Contact</span>
         </a>
     </nav>
 
@@ -929,7 +925,6 @@
             const enElements = document.querySelectorAll('.lang-en');
             const langFlag = document.getElementById('lang-flag');
             const langText = document.getElementById('lang-text');
-            const body = document.body;
 
             if (currentLang === 'en') {
                 koElements.forEach(el => el.classList.add('hidden'));
@@ -937,14 +932,12 @@
                 langFlag.textContent = '🇺🇸';
                 langText.textContent = 'KO';
                 document.documentElement.lang = 'en';
-                body.classList.add('lang-en');
             } else {
                 koElements.forEach(el => el.classList.remove('hidden'));
                 enElements.forEach(el => el.classList.add('hidden'));
                 langFlag.textContent = '🇰🇷';
                 langText.textContent = 'EN';
                 document.documentElement.lang = 'ko';
-                body.classList.remove('lang-en');
             }
 
             // Re-trigger counter animations if visible
