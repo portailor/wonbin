@@ -24,19 +24,21 @@
     <meta name="twitter:description" content="패션 리테일 전문가 황보원빈의 포트폴리오. 스토어 매니징, 재고 관리, VMD 전문가입니다.">
     <meta name="twitter:image" content="profile.jpg">
 
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#0f1729">
 
     <title>황보원빈 HWANG BO WON BIN - Fashion Retail Professional</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Pretendard and Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Pretendard from CDN -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
     <style>
         * {
@@ -46,32 +48,55 @@
         }
 
         :root {
-            --primary-dark: #1a1a1a;
-            --accent-gold: #d4af37;
-            --bg-start: #0a0a0a;
-            --bg-end: #1a1a1a;
+            --bg-navy: #0f1729;
+            --bg-purple: #1a1625;
+            --bg-charcoal: #1f1f23;
+            --text-primary: #f5f5f7;
+            --accent-rose: #E8B4A0;
+            --accent-indigo: #6366f1;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
-            color: #e0e0e0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(180deg, var(--bg-navy) 0%, var(--bg-purple) 50%, var(--bg-charcoal) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Playfair Display', serif;
+        body.lang-en {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         }
 
+        /* Glass Morphism Utilities */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(227, 180, 160, 0.15), 0 0 0 1px rgba(227, 180, 160, 0.2);
+            border-color: rgba(227, 180, 160, 0.3);
+        }
+
+        /* Fade-in Animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .fade-in.visible {
@@ -79,161 +104,288 @@
             transform: translateY(0);
         }
 
-        .gold-glow {
-            transition: all 0.3s ease;
+        /* Staggered Animation */
+        .fade-in:nth-child(1) {
+            transition-delay: 0ms;
         }
 
-        .gold-glow:hover {
-            color: var(--accent-gold);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-            transform: scale(1.05);
+        .fade-in:nth-child(2) {
+            transition-delay: 100ms;
         }
 
-        .skill-bar {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
+        .fade-in:nth-child(3) {
+            transition-delay: 200ms;
         }
 
-        .skill-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-gold) 0%, #f4d775 100%);
-            width: 0;
-            transition: width 1.5s ease-out;
+        .fade-in:nth-child(4) {
+            transition-delay: 300ms;
         }
 
-        .skill-bar.visible .skill-fill {
-            width: var(--skill-width);
+        .fade-in:nth-child(5) {
+            transition-delay: 400ms;
         }
 
+        .fade-in:nth-child(6) {
+            transition-delay: 500ms;
+        }
+
+        /* Buttons */
         .btn-primary {
-            background: var(--accent-gold);
-            color: #0a0a0a;
-            padding: 12px 32px;
-            border-radius: 30px;
+            background: linear-gradient(135deg, var(--accent-rose) 0%, #d4a894 100%);
+            color: var(--bg-navy);
+            padding: 14px 36px;
+            border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(227, 180, 160, 0.3);
         }
 
         .btn-primary:hover {
-            background: transparent;
-            color: var(--accent-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(227, 180, 160, 0.5);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--accent-gold);
-            padding: 12px 32px;
-            border-radius: 30px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-indigo);
+            padding: 14px 36px;
+            border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--accent-indigo);
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
-            background: var(--accent-gold);
-            color: #0a0a0a;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            background: rgba(99, 102, 241, 0.2);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
         }
 
+        /* Language Toggle */
         .lang-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             z-index: 1000;
-            background: rgba(26, 26, 26, 0.9);
-            border: 2px solid var(--accent-gold);
-            border-radius: 30px;
-            padding: 8px 16px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .lang-toggle:hover {
-            background: rgba(212, 175, 55, 0.2);
+            background: rgba(227, 180, 160, 0.1);
+            border-color: var(--accent-rose);
             transform: scale(1.05);
         }
 
-        .lang-toggle span {
-            font-size: 20px;
-            margin: 0 5px;
+        .lang-toggle-text {
+            color: var(--accent-rose);
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        .career-card {
-            background: rgba(26, 26, 26, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+        /* Hero Section */
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-rose) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .career-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        /* Progress Circle */
+        .progress-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
         }
 
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 8;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-circle.visible .progress-circle-fill {
+            stroke-dashoffset: calc(283 - (283 * var(--progress) / 100));
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-rose);
+        }
+
+        /* Metric Counter */
         .metric {
-            display: inline-block;
-            color: var(--accent-gold);
+            color: var(--accent-rose);
             font-weight: 700;
             font-size: 1.1em;
-        }
-
-        .cert-badge {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid var(--accent-gold);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .cert-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.1);
+        .metric:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(227, 180, 160, 0.6);
         }
 
+        /* Timeline */
         .timeline-item {
             position: relative;
             padding-left: 40px;
-            padding-bottom: 30px;
-            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 40px;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -8px;
-            top: 0;
+            left: 0;
+            top: 8px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-rose) 0%, var(--accent-indigo) 100%);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
             width: 14px;
             height: 14px;
-            background: var(--accent-gold);
+            background: var(--accent-rose);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 0 4px var(--bg-navy), 0 0 20px rgba(227, 180, 160, 0.6);
         }
 
-        .timeline-item:last-child {
-            border-left: none;
+        /* Certification Badge */
+        .cert-badge {
+            text-align: center;
+            padding: 32px 24px;
         }
 
+        .cert-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, rgba(227, 180, 160, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cert-badge:hover .cert-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Profile Image */
+        .profile-image {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 3px solid var(--accent-rose);
+            box-shadow: 0 0 40px rgba(227, 180, 160, 0.4), 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 12px;
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .lang-toggle {
+                top: 16px;
+                right: 16px;
+                padding: 8px 16px;
+            }
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a:active {
+            color: var(--accent-rose);
+            background: rgba(227, 180, 160, 0.1);
+        }
+
+        .mobile-nav-icon {
+            font-size: 20px;
+        }
+
+        /* Print Styles */
         @media print {
             .no-print {
                 display: none !important;
@@ -244,132 +396,125 @@
                 color: black;
             }
 
-            .career-card,
-            .cert-badge {
-                border-color: #333;
+            .glass-card {
+                border-color: #ddd;
                 background: white;
             }
 
-            .metric {
-                color: #d4af37;
+            .hero-title {
+                -webkit-text-fill-color: black;
             }
         }
 
-        @media (max-width: 768px) {
-            .lang-toggle {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 10px 24px;
-                font-size: 14px;
-            }
+        /* Accessibility */
+        .btn-primary:focus-visible,
+        .btn-secondary:focus-visible,
+        .lang-toggle:focus-visible {
+            outline: 2px solid var(--accent-rose);
+            outline-offset: 4px;
         }
 
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 26, 0.95);
-            border-top: 1px solid var(--accent-gold);
-            padding: 15px;
-            z-index: 999;
-            backdrop-filter: blur(10px);
+        /* Performance Optimizations */
+        .glass-card,
+        .btn-primary,
+        .btn-secondary {
+            will-change: transform;
         }
 
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: flex;
-                justify-content: space-around;
+        /* Utility Classes */
+        .section-padding {
+            padding: 6rem 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 8rem 2rem;
             }
         }
 
-        .mobile-nav a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav a:hover {
-            color: var(--accent-gold);
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-rose) 0%, var(--accent-indigo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
 
 <body>
     <!-- Language Toggle -->
-    <div class="lang-toggle no-print" onclick="toggleLanguage()">
-        <span id="lang-flag">🇰🇷</span>
-        <span id="lang-text" style="color: var(--accent-gold); font-weight: 600; margin-left: 5px;">EN</span>
-    </div>
+    <button class="lang-toggle no-print" onclick="toggleLanguage()" aria-label="Toggle Language">
+        <span id="lang-flag" aria-hidden="true">🇰🇷</span>
+        <span class="lang-toggle-text" id="lang-text">EN</span>
+    </button>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center px-4 py-20">
-        <div class="text-center max-w-4xl mx-auto fade-in">
-            <h1 class="text-6xl md:text-8xl font-bold mb-4 text-white" style="font-family: 'Playfair Display', serif;">
-                <span class="lang-ko">황보원빈</span>
-                <span class="lang-en hidden">HWANG BO WON BIN</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8" style="color: var(--accent-gold);">
-                <span class="lang-ko">패션 업계 구직 중</span>
-                <span class="lang-en hidden">Fashion Industry Job Seeker</span>
-            </p>
-            <p class="text-lg md:text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
-                <span class="lang-ko">스토어 매니징, 재고 관리, VMD 전문가</span>
-                <span class="lang-en hidden">Store Management, Inventory Control, VMD Specialist</span>
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
+    <section id="hero" class="min-h-screen flex items-center justify-center section-padding">
+        <div class="text-center max-w-5xl mx-auto px-4">
+            <div class="fade-in">
+                <h1 class="hero-title mb-6">
+                    <span class="lang-ko">황보원빈</span>
+                    <span class="lang-en hidden">HWANG BO WON BIN</span>
+                </h1>
+            </div>
+            <div class="fade-in">
+                <p class="text-2xl md:text-3xl font-semibold mb-4 text-gradient">
+                    <span class="lang-ko">패션 업계 구직 중</span>
+                    <span class="lang-en hidden">Fashion Industry Job Seeker</span>
+                </p>
+            </div>
+            <div class="fade-in">
+                <p class="text-lg md:text-xl mb-12 opacity-80 max-w-2xl mx-auto">
+                    <span class="lang-ko">스토어 매니징, 재고 관리, VMD 전문가</span>
+                    <span class="lang-en hidden">Store Management, Inventory Control, VMD Specialist</span>
+                </p>
+            </div>
+            <div class="fade-in flex flex-wrap gap-4 justify-center">
                 <button onclick="toggleLanguage()" class="btn-secondary no-print">
-                    <span class="lang-ko">English</span>
-                    <span class="lang-en hidden">한국어</span>
+                    <span class="lang-ko">🌐 English</span>
+                    <span class="lang-en hidden">🌐 한국어</span>
                 </button>
                 <button onclick="downloadResume()" class="btn-primary no-print">
-                    <span class="lang-ko">이력서 다운로드</span>
-                    <span class="lang-en hidden">Download Resume</span>
+                    <span class="lang-ko">📄 이력서 다운로드</span>
+                    <span class="lang-en hidden">📄 Download Resume</span>
                 </button>
                 <a href="#contact" class="btn-secondary">
-                    <span class="lang-ko">연락하기</span>
-                    <span class="lang-en hidden">Contact</span>
+                    <span class="lang-ko">✉️ 연락하기</span>
+                    <span class="lang-en hidden">✉️ Contact</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <img src="profile.jpg" alt="황보원빈 HWANG BO WON BIN Profile Photo"
-                        class="rounded-lg shadow-2xl w-full max-w-md mx-auto"
-                        style="border: 3px solid var(--accent-gold);">
+    <section id="about" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="fade-in order-2 md:order-1">
+                    <img src="profile.jpg" alt="황보원빈 HWANG BO WON BIN Profile Photo" class="profile-image mx-auto">
                 </div>
-                <div class="fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--accent-gold);">
-                        <span class="lang-ko">소개</span>
-                        <span class="lang-en hidden">About</span>
-                    </h2>
-                    <p class="text-lg leading-relaxed text-gray-300 lang-ko">
-                        패션 리테일 전문가로서 스토어 매니징, 재고 관리, 고객 서비스 분야에서 실무 경험을 쌓았습니다. GTQ 포토샵·일러스트 1급 자격과 VMD 자격증을 보유하며, 디자인
-                        감각과 실무 역량을 겸비한 패션 전문가로 성장하고 있습니다.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-300 lang-en hidden">
-                        Fashion retail professional with hands-on experience in store management, inventory control, and
-                        customer service. Certified in Photoshop (GTQ Level 1), Illustrator (GTQi Level 1), and Visual
-                        Merchandising, combining design sensibility with practical business acumen.
-                    </p>
-                    <div class="mt-8">
-                        <a href="mailto:binbin010824@naver.com" class="text-lg" style="color: var(--accent-gold);">
-                            📧 binbin010824@naver.com
+                <div class="order-1 md:order-2">
+                    <div class="fade-in mb-8">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-2 text-gradient">
+                            <span class="lang-ko">소개</span>
+                            <span class="lang-en hidden">About</span>
+                        </h2>
+                    </div>
+                    <div class="fade-in glass-card p-8">
+                        <p class="text-lg leading-relaxed opacity-90 lang-ko mb-6">
+                            패션 리테일 전문가로서 스토어 매니징, 재고 관리, 고객 서비스 분야에서 실무 경험을 쌓았습니다. GTQ 포토샵·일러스트 1급 자격과 VMD 자격증을 보유하며,
+                            디자인 감각과 실무 역량을 겸비한 패션 전문가로 성장하고 있습니다.
+                        </p>
+                        <p class="text-lg leading-relaxed opacity-90 lang-en hidden mb-6">
+                            Fashion retail professional with hands-on experience in store management, inventory control,
+                            and customer service. Certified in Photoshop (GTQ Level 1), Illustrator (GTQi Level 1), and
+                            Visual Merchandising, combining design sensibility with practical business acumen.
+                        </p>
+                        <a href="mailto:binbin010824@naver.com"
+                            class="inline-flex items-center gap-2 text-lg font-semibold hover:opacity-80 transition-opacity"
+                            style="color: var(--accent-rose);">
+                            <span>📧</span>
+                            <span>binbin010824@naver.com</span>
                         </a>
                     </div>
                 </div>
@@ -378,108 +523,133 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 px-4" style="background: rgba(26, 26, 26, 0.3);">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">학력</span>
-                <span class="lang-en hidden">Education</span>
-            </h2>
+    <section id="education" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient">
+                    <span class="lang-ko">학력</span>
+                    <span class="lang-en hidden">Education</span>
+                </h2>
+            </div>
             <div class="max-w-3xl mx-auto">
                 <div class="timeline-item fade-in">
-                    <h3 class="text-2xl font-bold mb-2 text-white">
-                        <span class="lang-ko">계명대학교 패션마케팅학과 (재학 중)</span>
-                        <span class="lang-en hidden">Keimyung University - Fashion Marketing (Currently Enrolled)</span>
-                    </h3>
-                    <p class="text-gray-400 mb-2">
-                        <span class="lang-ko">학사 과정</span>
-                        <span class="lang-en hidden">Bachelor's Degree</span>
-                    </p>
+                    <div class="glass-card p-6 md:p-8">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-3">
+                            <span class="lang-ko">계명대학교</span>
+                            <span class="lang-en hidden">Keimyung University</span>
+                        </h3>
+                        <p class="text-lg font-semibold mb-2" style="color: var(--accent-rose);">
+                            <span class="lang-ko">패션마케팅학과 (재학 중)</span>
+                            <span class="lang-en hidden">Fashion Marketing (Currently Enrolled)</span>
+                        </p>
+                        <p class="opacity-70">
+                            <span class="lang-ko">학사 과정</span>
+                            <span class="lang-en hidden">Bachelor's Degree</span>
+                        </p>
+                    </div>
                 </div>
                 <div class="timeline-item fade-in">
-                    <h3 class="text-2xl font-bold mb-2 text-white">
-                        <span class="lang-ko">영남이공대학교 패션디자인마케팅학과 (졸업)</span>
-                        <span class="lang-en hidden">Yeungnam University College - Fashion Design & Marketing
-                            (Graduated)</span>
-                    </h3>
-                    <p class="text-gray-400 mb-2">
-                        <span class="lang-ko">전문학사 (2년제)</span>
-                        <span class="lang-en hidden">Associate Degree</span>
-                    </p>
+                    <div class="glass-card p-6 md:p-8">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-3">
+                            <span class="lang-ko">영남이공대학교</span>
+                            <span class="lang-en hidden">Yeungnam University College</span>
+                        </h3>
+                        <p class="text-lg font-semibold mb-2" style="color: var(--accent-rose);">
+                            <span class="lang-ko">패션디자인마케팅학과 (졸업)</span>
+                            <span class="lang-en hidden">Fashion Design & Marketing (Graduated)</span>
+                        </p>
+                        <p class="opacity-70">
+                            <span class="lang-ko">전문학사 (2년제)</span>
+                            <span class="lang-en hidden">Associate Degree</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Career Section -->
-    <section id="career" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">경력</span>
-                <span class="lang-en hidden">Career</span>
-            </h2>
-            <div class="career-card fade-in">
-                <div class="flex flex-wrap justify-between items-start mb-4">
-                    <div>
-                        <h3 class="text-3xl font-bold mb-2 text-white">Lost Garden</h3>
-                        <p class="text-xl mb-2" style="color: var(--accent-gold);">
+    <section id="career" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient">
+                    <span class="lang-ko">경력</span>
+                    <span class="lang-en hidden">Career</span>
+                </h2>
+            </div>
+            <div class="fade-in glass-card p-8 md:p-10">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h3 class="text-3xl md:text-4xl font-bold mb-3">Lost Garden</h3>
+                        <p class="text-xl md:text-2xl font-semibold mb-2" style="color: var(--accent-rose);">
                             <span class="lang-ko">스토어 매니저 / 온·오프라인 운영 담당</span>
                             <span class="lang-en hidden">Store Manager / Online & Offline Operations</span>
                         </p>
-                        <p class="text-gray-400">
+                        <p class="opacity-70">
                             <span class="lang-ko">남성 제화 브랜드</span>
                             <span class="lang-en hidden">Men's Footwear Brand</span>
                         </p>
                     </div>
-                    <div class="text-right mt-4 md:mt-0">
-                        <p class="text-lg text-gray-300">2023.10.12 ~ 2024.10.10</p>
-                        <p class="text-gray-400">
+                    <div class="md:text-right">
+                        <p class="text-lg font-semibold">2023.10.12 ~ 2024.10.10</p>
+                        <p class="opacity-70">
                             <span class="lang-ko">1년</span>
                             <span class="lang-en hidden">1 Year</span>
                         </p>
                     </div>
                 </div>
-                <div class="mt-6">
-                    <h4 class="text-xl font-bold mb-4 text-white">
+                <div>
+                    <h4 class="text-xl md:text-2xl font-bold mb-6" style="color: var(--accent-indigo);">
                         <span class="lang-ko">주요 업무 및 성과</span>
                         <span class="lang-en hidden">Responsibilities & Achievements</span>
                     </h4>
-                    <ul class="space-y-4 text-gray-300">
-                        <li class="leading-relaxed lang-ko">
-                            ✦ 본사 창고 약 <span class="metric gold-glow">2,000족</span> 재고 관리 및 입출고 시스템 운영
+                    <ul class="space-y-5 text-base md:text-lg opacity-90">
+                        <li class="leading-relaxed lang-ko flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>본사 창고 약 <span class="metric" data-target="2000">0</span>족 재고 관리 및 입출고 시스템 운영</span>
                         </li>
-                        <li class="leading-relaxed lang-ko">
-                            ✦ <span class="metric gold-glow">100만 구독자</span> 패션 유튜버 '깡스타일리스트' 협업 촬영 참여 및 제품 홍보<br>
-                            &nbsp;&nbsp;&nbsp;→ 유튜브 영상 업로드 후 일주일간 <span class="metric gold-glow">2,000족 판매 달성</span>
+                        <li class="leading-relaxed lang-ko flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span><span class="metric" data-target="100">0</span>만 구독자 패션 유튜버 '깡스타일리스트' 협업 촬영 참여 및 제품
+                                홍보<br><span class="ml-6">→ 유튜브 영상 업로드 후 일주일간 <span class="metric"
+                                        data-target="2000">0</span>족 판매 달성</span></span>
                         </li>
-                        <li class="leading-relaxed lang-ko">
-                            ✦ AAOA 팝업스토어: <span class="metric gold-glow">20개 패션 브랜드</span>와 현장 매니저로 팝업 운영<br>
-                            &nbsp;&nbsp;&nbsp;→ 평균 오프라인 매출 대비 <span class="metric gold-glow">400% 증가</span><br>
-                            &nbsp;&nbsp;&nbsp;→ 소비자 트렌드 분석 및 소구점 조사를 통해 차기 제품 개발 회의 참여 및 캐리오버 제품 제작 기여
+                        <li class="leading-relaxed lang-ko flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>AAOA 팝업스토어: <span class="metric" data-target="20">0</span>개 패션 브랜드와 현장 매니저로 팝업
+                                운영<br><span class="ml-6">→ 평균 오프라인 매출 대비 <span class="metric"
+                                        data-target="400">0</span>% 증가</span><br><span class="ml-6">→ 소비자 트렌드 분석 및 소구점
+                                    조사를 통해 차기 제품 개발 회의 참여 및 캐리오버 제품 제작 기여</span></span>
                         </li>
-                        <li class="leading-relaxed lang-ko">
-                            ✦ 온라인 고객 서비스(C/S) 및 주문 관리 업무 수행
+                        <li class="leading-relaxed lang-ko flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>온라인 고객 서비스(C/S) 및 주문 관리 업무 수행</span>
                         </li>
 
-                        <li class="leading-relaxed lang-en hidden">
-                            ✦ Managed inventory of approx. <span class="metric gold-glow">2,000 pairs</span> of shoes at
-                            headquarters warehouse
+                        <li class="leading-relaxed lang-en hidden flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>Managed inventory of approx. <span class="metric" data-target="2000">0</span> pairs of
+                                shoes at headquarters warehouse</span>
                         </li>
-                        <li class="leading-relaxed lang-en hidden">
-                            ✦ Collaborated with 'Kkang Stylist' (<span class="metric gold-glow">1M+ subscriber</span>
-                            fashion YouTuber) for product promotion video<br>
-                            &nbsp;&nbsp;&nbsp;→ Achieved <span class="metric gold-glow">2,000 pairs sold</span> within
-                            one week after video upload
+                        <li class="leading-relaxed lang-en hidden flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>Collaborated with 'Kkang Stylist' (<span class="metric" data-target="1">0</span>M+
+                                subscriber fashion YouTuber) for product promotion video<br><span class="ml-6">→
+                                    Achieved <span class="metric" data-target="2000">0</span> pairs sold within one week
+                                    after video upload</span></span>
                         </li>
-                        <li class="leading-relaxed lang-en hidden">
-                            ✦ AAOA Pop-up Store: Managed on-site operations with <span class="metric gold-glow">20
-                                fashion brands</span><br>
-                            &nbsp;&nbsp;&nbsp;→ Achieved <span class="metric gold-glow">400% sales increase</span>
-                            compared to average offline sales<br>
-                            &nbsp;&nbsp;&nbsp;→ Conducted consumer trend analysis and market research, contributing to
-                            next-gen product development and carryover production
+                        <li class="leading-relaxed lang-en hidden flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>AAOA Pop-up Store: Managed on-site operations with <span class="metric"
+                                    data-target="20">0</span> fashion brands<br><span class="ml-6">→ Achieved <span
+                                        class="metric" data-target="400">0</span>% sales increase compared to average
+                                    offline sales</span><br><span class="ml-6">→ Conducted consumer trend analysis and
+                                    market research, contributing to next-gen product development and carryover
+                                    production</span></span>
                         </li>
-                        <li class="leading-relaxed lang-en hidden">
-                            ✦ Handled online customer service and order management
+                        <li class="leading-relaxed lang-en hidden flex items-start gap-3">
+                            <span style="color: var(--accent-indigo); flex-shrink: 0;">●</span>
+                            <span>Handled online customer service and order management</span>
                         </li>
                     </ul>
                 </div>
@@ -488,149 +658,165 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4" style="background: rgba(26, 26, 26, 0.3);">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">스킬</span>
-                <span class="lang-en hidden">Skills</span>
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">Photoshop</span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">전문가</span>
-                            <span class="lang-en hidden">Expert</span>
-                        </span>
+    <section id="skills" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient">
+                    <span class="lang-ko">스킬</span>
+                    <span class="lang-en hidden">Skills</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
+                <!-- Photoshop -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 95;">
+                        <svg width="120" height="120">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: #E8B4A0; stop-opacity: 1" />
+                                    <stop offset="100%" style="stop-color: #6366f1; stop-opacity: 1" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">95</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 95%;">
-                        <div class="skill-fill"></div>
-                    </div>
-                    <p class="text-sm text-gray-400 mt-1">
-                        <span class="lang-ko">GTQ 1급 자격증</span>
-                        <span class="lang-en hidden">GTQ Level 1 Certified</span>
+                    <h3 class="font-semibold text-center mb-1">Photoshop</h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">전문가</span>
+                        <span class="lang-en hidden">Expert</span>
                     </p>
                 </div>
 
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">Illustrator</span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">전문가</span>
-                            <span class="lang-en hidden">Expert</span>
-                        </span>
+                <!-- Illustrator -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 95;">
+                        <svg width="120" height="120">
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">95</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 95%;">
-                        <div class="skill-fill"></div>
-                    </div>
-                    <p class="text-sm text-gray-400 mt-1">
-                        <span class="lang-ko">GTQi 1급 자격증</span>
-                        <span class="lang-en hidden">GTQi Level 1 Certified</span>
+                    <h3 class="font-semibold text-center mb-1">Illustrator</h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">전문가</span>
+                        <span class="lang-en hidden">Expert</span>
                     </p>
                 </div>
 
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">
-                            <span class="lang-ko">비주얼 머천다이징 (VMD)</span>
-                            <span class="lang-en hidden">Visual Merchandising (VMD)</span>
-                        </span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">고급</span>
-                            <span class="lang-en hidden">Advanced</span>
-                        </span>
+                <!-- VMD -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 90;">
+                        <svg width="120" height="120">
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">90</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 90%;">
-                        <div class="skill-fill"></div>
-                    </div>
-                    <p class="text-sm text-gray-400 mt-1">
-                        <span class="lang-ko">민간 자격증</span>
-                        <span class="lang-en hidden">Certified</span>
+                    <h3 class="font-semibold text-center mb-1">
+                        <span class="lang-ko">VMD</span>
+                        <span class="lang-en hidden">VMD</span>
+                    </h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">고급</span>
+                        <span class="lang-en hidden">Advanced</span>
                     </p>
                 </div>
 
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">
-                            <span class="lang-ko">고객 서비스 & CRM</span>
-                            <span class="lang-en hidden">Customer Service & CRM</span>
-                        </span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">고급</span>
-                            <span class="lang-en hidden">Advanced</span>
-                        </span>
+                <!-- Customer Service -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 90;">
+                        <svg width="120" height="120">
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">90</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 90%;">
-                        <div class="skill-fill"></div>
-                    </div>
+                    <h3 class="font-semibold text-center mb-1">
+                        <span class="lang-ko">고객 서비스</span>
+                        <span class="lang-en hidden">Customer Service</span>
+                    </h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">고급</span>
+                        <span class="lang-en hidden">Advanced</span>
+                    </p>
                 </div>
 
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">
-                            <span class="lang-ko">재고 관리</span>
-                            <span class="lang-en hidden">Inventory Management</span>
-                        </span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">고급</span>
-                            <span class="lang-en hidden">Advanced</span>
-                        </span>
+                <!-- Inventory -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 90;">
+                        <svg width="120" height="120">
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">90</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 90%;">
-                        <div class="skill-fill"></div>
-                    </div>
+                    <h3 class="font-semibold text-center mb-1">
+                        <span class="lang-ko">재고 관리</span>
+                        <span class="lang-en hidden">Inventory</span>
+                    </h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">고급</span>
+                        <span class="lang-en hidden">Advanced</span>
+                    </p>
                 </div>
 
-                <div class="fade-in">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-lg text-white">
-                            <span class="lang-ko">트렌드 분석</span>
-                            <span class="lang-en hidden">Trend Analysis</span>
-                        </span>
-                        <span class="text-sm text-gray-400">
-                            <span class="lang-ko">중급</span>
-                            <span class="lang-en hidden">Intermediate</span>
-                        </span>
+                <!-- Trend Analysis -->
+                <div class="fade-in flex flex-col items-center">
+                    <div class="progress-circle mb-4" style="--progress: 80;">
+                        <svg width="120" height="120">
+                            <circle class="progress-circle-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-circle-fill" cx="60" cy="60" r="45"></circle>
+                        </svg>
+                        <div class="progress-text">80</div>
                     </div>
-                    <div class="skill-bar" style="--skill-width: 80%;">
-                        <div class="skill-fill"></div>
-                    </div>
+                    <h3 class="font-semibold text-center mb-1">
+                        <span class="lang-ko">트렌드 분석</span>
+                        <span class="lang-en hidden">Trend Analysis</span>
+                    </h3>
+                    <p class="text-sm opacity-70 text-center">
+                        <span class="lang-ko">중급</span>
+                        <span class="lang-en hidden">Intermediate</span>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">자격증</span>
-                <span class="lang-en hidden">Certifications</span>
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="cert-badge fade-in">
-                    <div class="text-5xl mb-4">🎨</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">
+    <section id="certifications" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient">
+                    <span class="lang-ko">자격증</span>
+                    <span class="lang-en hidden">Certifications</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="fade-in glass-card cert-badge">
+                    <div class="cert-icon">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">
                         <span class="lang-ko">GTQ 포토샵 1급</span>
                         <span class="lang-en hidden">GTQ Photoshop Level 1</span>
                     </h3>
-                    <p class="text-gray-400">2024</p>
+                    <p class="opacity-70">2024</p>
                 </div>
-                <div class="cert-badge fade-in">
-                    <div class="text-5xl mb-4">✏️</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">
+                <div class="fade-in glass-card cert-badge">
+                    <div class="cert-icon">✏️</div>
+                    <h3 class="text-xl font-bold mb-2">
                         <span class="lang-ko">GTQi 일러스트 1급</span>
                         <span class="lang-en hidden">GTQi Illustrator Level 1</span>
                     </h3>
-                    <p class="text-gray-400">2024</p>
+                    <p class="opacity-70">2024</p>
                 </div>
-                <div class="cert-badge fade-in">
-                    <div class="text-5xl mb-4">🏪</div>
-                    <h3 class="text-xl font-bold mb-2 text-white">
-                        <span class="lang-ko">비주얼 머천다이징 (VMD)</span>
+                <div class="fade-in glass-card cert-badge">
+                    <div class="cert-icon">🏪</div>
+                    <h3 class="text-xl font-bold mb-2">
+                        <span class="lang-ko">비주얼 머천다이징</span>
                         <span class="lang-en hidden">Visual Merchandising</span>
                     </h3>
-                    <p class="text-gray-400">
+                    <p class="opacity-70">
                         <span class="lang-ko">민간자격증</span>
                         <span class="lang-en hidden">Certification</span>
                     </p>
@@ -640,14 +826,17 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4" style="background: rgba(26, 26, 26, 0.3);">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">프로젝트</span>
-                <span class="lang-en hidden">Projects</span>
-            </h2>
-            <div class="text-center py-12 fade-in">
-                <p class="text-xl text-gray-400">
+    <section id="projects" class="section-padding">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient">
+                    <span class="lang-ko">프로젝트</span>
+                    <span class="lang-en hidden">Projects</span>
+                </h2>
+            </div>
+            <div class="fade-in glass-card p-12 text-center">
+                <div class="text-6xl mb-6 opacity-50">📁</div>
+                <p class="text-xl opacity-70">
                     <span class="lang-ko">대학 프로젝트가 완료되는 대로 업데이트될 예정입니다.</span>
                     <span class="lang-en hidden">University project to be added upon completion.</span>
                 </p>
@@ -656,31 +845,37 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 fade-in" style="color: var(--accent-gold);">
-                <span class="lang-ko">연락하기</span>
-                <span class="lang-en hidden">Contact</span>
-            </h2>
-            <p class="text-xl mb-8 text-gray-300 fade-in">
-                <span class="lang-ko">함께 일할 기회를 기다립니다.</span>
-                <span class="lang-en hidden">Let's work together.</span>
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center fade-in">
-                <a href="mailto:binbin010824@naver.com" class="btn-primary">
-                    📧 binbin010824@naver.com
-                </a>
-                <button onclick="downloadVCard()" class="btn-secondary no-print">
-                    <span class="lang-ko">연락처 저장</span>
-                    <span class="lang-en hidden">Save Contact</span>
-                </button>
+    <section id="contact" class="section-padding">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="fade-in text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient mb-6">
+                    <span class="lang-ko">연락하기</span>
+                    <span class="lang-en hidden">Contact</span>
+                </h2>
+                <p class="text-xl opacity-80">
+                    <span class="lang-ko">함께 일할 기회를 기다립니다.</span>
+                    <span class="lang-en hidden">Let's work together.</span>
+                </p>
+            </div>
+            <div class="fade-in glass-card p-8 md:p-12 text-center">
+                <div class="flex flex-col gap-4 max-w-md mx-auto">
+                    <a href="mailto:binbin010824@naver.com" class="btn-primary justify-center">
+                        <span>📧</span>
+                        <span>binbin010824@naver.com</span>
+                    </a>
+                    <button onclick="downloadVCard()" class="btn-secondary justify-center no-print">
+                        <span>💾</span>
+                        <span class="lang-ko">연락처 저장</span>
+                        <span class="lang-en hidden">Save Contact</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 text-center no-print">
-        <p class="text-sm" style="color: var(--accent-gold);">
+    <footer class="py-12 text-center no-print">
+        <p class="text-sm opacity-50" style="color: var(--accent-rose);">
             Powered by Portailor
         </p>
     </footer>
@@ -688,28 +883,42 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav no-print">
         <a href="#about">
-            <span style="font-size: 20px; margin-bottom: 4px;">👤</span>
+            <span class="mobile-nav-icon">👤</span>
             <span class="lang-ko">소개</span>
             <span class="lang-en hidden">About</span>
         </a>
         <a href="#career">
-            <span style="font-size: 20px; margin-bottom: 4px;">💼</span>
+            <span class="mobile-nav-icon">💼</span>
             <span class="lang-ko">경력</span>
             <span class="lang-en hidden">Career</span>
         </a>
         <a href="#skills">
-            <span style="font-size: 20px; margin-bottom: 4px;">⚡</span>
+            <span class="mobile-nav-icon">⚡</span>
             <span class="lang-ko">스킬</span>
             <span class="lang-en hidden">Skills</span>
         </a>
         <a href="#contact">
-            <span style="font-size: 20px; margin-bottom: 4px;">📧</span>
+            <span class="mobile-nav-icon">✉️</span>
             <span class="lang-ko">연락</span>
             <span class="lang-en hidden">Contact</span>
         </a>
     </nav>
 
     <script>
+        // Portfolio Data
+        const PORTFOLIO_DATA = {
+            ko: {
+                name: "황보원빈",
+                status: "패션 업계 구직 중",
+                email: "binbin010824@naver.com"
+            },
+            en: {
+                name: "HWANG BO WON BIN",
+                status: "Fashion Industry Job Seeker",
+                email: "binbin010824@naver.com"
+            }
+        };
+
         // Language Toggle
         let currentLang = 'ko';
 
@@ -720,6 +929,7 @@
             const enElements = document.querySelectorAll('.lang-en');
             const langFlag = document.getElementById('lang-flag');
             const langText = document.getElementById('lang-text');
+            const body = document.body;
 
             if (currentLang === 'en') {
                 koElements.forEach(el => el.classList.add('hidden'));
@@ -727,22 +937,27 @@
                 langFlag.textContent = '🇺🇸';
                 langText.textContent = 'KO';
                 document.documentElement.lang = 'en';
+                body.classList.add('lang-en');
             } else {
                 koElements.forEach(el => el.classList.remove('hidden'));
                 enElements.forEach(el => el.classList.add('hidden'));
                 langFlag.textContent = '🇰🇷';
                 langText.textContent = 'EN';
                 document.documentElement.lang = 'ko';
+                body.classList.remove('lang-en');
             }
+
+            // Re-trigger counter animations if visible
+            animateMetrics();
         }
 
         // Intersection Observer for Fade-in Animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -751,11 +966,11 @@
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+            fadeObserver.observe(el);
         });
 
-        // Skill Bars Animation
-        const skillObserver = new IntersectionObserver((entries) => {
+        // Progress Circle Animation
+        const circleObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -763,19 +978,59 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-bar').forEach(el => {
-            skillObserver.observe(el);
+        document.querySelectorAll('.progress-circle').forEach(el => {
+            circleObserver.observe(el);
         });
+
+        // Counter Animation for Metrics
+        let metricsAnimated = false;
+
+        function animateMetrics() {
+            const metrics = document.querySelectorAll('.metric[data-target]');
+
+            metrics.forEach(metric => {
+                const target = parseInt(metric.getAttribute('data-target'));
+                const duration = 1500;
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        metric.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        metric.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            });
+        }
+
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !metricsAnimated) {
+                    metricsAnimated = true;
+                    setTimeout(animateMetrics, 300);
+                }
+            });
+        }, observerOptions);
+
+        const careerSection = document.querySelector('#career');
+        if (careerSection) {
+            metricsObserver.observe(careerSection);
+        }
 
         // Download Resume (PDF)
         function downloadResume() {
             const originalTitle = document.title;
             document.title = currentLang === 'ko' ? '황보원빈_이력서' : 'HWANGBOWONBIN_Resume';
 
-            window.print();
-
             setTimeout(() => {
-                document.title = originalTitle;
+                window.print();
+                setTimeout(() => {
+                    document.title = originalTitle;
+                }, 100);
             }, 100);
         }
 
@@ -791,7 +1046,7 @@ ORG:
 NOTE:패션 리테일 전문가 - 스토어 매니징, 재고 관리, VMD 전문가
 END:VCARD`;
 
-            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
@@ -802,18 +1057,39 @@ END:VCARD`;
             window.URL.revokeObjectURL(url);
         }
 
-        // Smooth Scrolling
+        // Smooth Scrolling Enhancement
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
+        });
+
+        // Keyboard Navigation Support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-nav');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-nav');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger initial fade-in for hero
+            setTimeout(() => {
+                const heroElements = document.querySelectorAll('#hero .fade-in');
+                heroElements.forEach(el => el.classList.add('visible'));
+            }, 100);
         });
     </script>
 </body>
